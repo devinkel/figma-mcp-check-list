@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design para Figma MCP - Guia Visual</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .goal-box {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .goal-box .goal-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .goal-box .goal-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .processes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .process-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .process-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .process-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .process-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .do-list {
+            margin-bottom: 20px;
+        }
+
+        .do-item {
+            background: #f8f9ff;
+            border-left: 4px solid #4CAF50;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+
+        .dont-item {
+            background: #fff5f5;
+            border-left: 4px solid #f44336;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .example-box {
+            background: #e8f4fd;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #2196F3;
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: #1976D2;
+            margin-bottom: 8px;
+        }
+
+        .timeline {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .timeline h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .week {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .week-number {
+            min-width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-right: 25px;
+        }
+
+        .week-content {
+            flex: 1;
+        }
+
+        .week-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .week-tasks {
+            list-style: none;
+        }
+
+        .week-tasks li {
+            background: white;
+            padding: 8px 15px;
+            margin: 5px 0;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .checklist {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .checklist h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+        }
+
+        .checklist-section {
+            background: #f8f9ff;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .checklist-section h3 {
+            font-size: 1.3rem;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .check-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #667eea;
+            border-radius: 4px;
+            margin-right: 12px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .metrics {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border-radius: 15px;
+            padding: 30px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .metrics h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .metric-item {
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .interactive-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin: 10px 5px;
+        }
+
+        .interactive-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .processes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .checklist-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .week {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .week-number {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Design para Figma MCP</h1>
+            <p class="subtitle">Processos para automação Design → Código</p>
+        </div>
+
+        <div class="goal-box">
+            <div class="goal-number">80%</div>
+            <div class="goal-text">Redução no tempo de conversão Design → Código</div>
+        </div>
+
+        <div class="highlight">
+            💡 A IA vai gerar código Vue 2 + CSS automaticamente dos seus designs do Figma
+        </div>
+
+        <div class="processes-grid">
+            <div class="process-card">
+                <div class="process-number">1</div>
+                <div class="process-title">Nomenclatura Semântica</div>
+                <div class="do-list">
+                    <div class="do-item">✅ ProductCard</div>
+                    <div class="do-item">✅ SearchInput</div>
+                    <div class="do-item">✅ AddToCartButton</div>
+                </div>
+                <div class="do-list">
+                    <div class="dont-item">❌ Rectangle 1</div>
+                    <div class="dont-item">❌ Frame 123</div>
+                    <div class="dont-item">❌ Group 5</div>
+                </div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-number">2</div>
+                <div class="process-title">Componentes Organizados</div>
+                <div class="example-box">
+                    <div class="example-title">Estrutura:</div>
+                    <div>🔴 Atoms (Button, Input, Icon)</div>
+                    <div>🟡 Molecules (SearchBar, ProductInfo)</div>
+                    <div>🟢 Organisms (ProductCard, Header)</div>
+                </div>
+                <div class="do-item">Transforme tudo que repete em componente</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-number">3</div>
+                <div class="process-title">Auto Layout</div>
+                <div class="do-item">✅ Todos os containers</div>
+                <div class="do-item">✅ Listas e grids</div>
+                <div class="do-item">✅ Formulários</div>
+                <div class="example-box">
+                    <div class="example-title">Teste:</div>
+                    Redimensione o frame - deve comportar como esperado no código
+                </div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-number">4</div>
+                <div class="process-title">Design Tokens</div>
+                <div class="example-box">
+                    <div class="example-title">Variables obrigatórias:</div>
+                    <div>🎨 Colors/Primary → --color-primary</div>
+                    <div>📏 Spacing/MD → --space-4</div>
+                    <div>📝 Text/Body → --font-size-base</div>
+                </div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-number">5</div>
+                <div class="process-title">Annotations</div>
+                <div class="do-item">Estados hover/focus</div>
+                <div class="do-item">Comportamento responsivo</div>
+                <div class="do-item">Estados loading/error</div>
+                <div class="example-box">
+                    <div class="example-title">Exemplo:</div>
+                    "Em mobile, sidebar vira drawer bottom-sheet"
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline">
+            <h2>📅 Cronograma de Implementação</h2>
+            
+            <div class="week">
+                <div class="week-number">1</div>
+                <div class="week-content">
+                    <div class="week-title">Setup e Padronização</div>
+                    <ul class="week-tasks">
+                        <li>Configurar design tokens no Figma</li>
+                        <li>Criar templates de nomenclatura</li>
+                        <li>Treinar time nos processos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="week">
+                <div class="week-number">2</div>
+                <div class="week-content">
+                    <div class="week-title">Novos Designs</div>
+                    <ul class="week-tasks">
+                        <li>Aplicar padrões em 100% dos novos designs</li>
+                        <li>Adicionar annotations em componentes</li>
+                        <li>Testar com 1 componente piloto</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="week">
+                <div class="week-number">3</div>
+                <div class="week-content">
+                    <div class="week-title">Otimização</div>
+                    <ul class="week-tasks">
+                        <li>Validar resultados com desenvolvimento</li>
+                        <li>Refinar processos baseado no feedback</li>
+                        <li>Escalar para todos os projetos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="checklist">
+            <h2>✅ Checklists de Qualidade</h2>
+            <div class="checklist-grid">
+                <div class="checklist-section">
+                    <h3>Individual (Designer)</h3>
+                    <div class="check-item">
+                        <div class="check-box"></div>
+                        <div>Layers com nomes semânticos</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-box"></div>
+                        <div>Componentes reutilizáveis criados</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-box"></div>
+                        <div>Auto Layout aplicado</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-box"></div>
+                        <div>Design tokens aplicados</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-box"></div>
+                        <div>Annotations adicionadas</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-box"></div>
+                        <div>Redimensionamento testado</div>
+                    </div>
+                </div>
+
+                <div class="checklist-section">
+                    <h3>Revisão (Design Lead)</h3>
+                    <div class="check-item">
+                        <div class="check-box"></div>
+                        <div>Nomenclatura segue padrão</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-box"></div>
+                        <div>Componentes organizados na library</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-box"></div>
+                        <div>Tokens aplicados consistentemente</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-box"></div>
+                        <div>Auto Layout configurado corretamente</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-box"></div>
+                        <div>Design responsivo testado</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="metrics">
+            <h2>📊 Métricas de Sucesso</h2>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-number">90%</div>
+                    <div class="metric-label">Designs sem revisão</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-number">100%</div>
+                    <div class="metric-label">Nomenclatura semântica</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-number">95%</div>
+                    <div class="metric-label">Uso correto tokens</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-number">70%</div>
+                    <div class="metric-label">Redução feedback dev</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
