@@ -269,6 +269,78 @@
             margin-right: 12px;
             margin-top: 2px;
             flex-shrink: 0;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .check-box:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .check-box.checked {
+            background: #667eea;
+            border-color: #667eea;
+        }
+
+        .check-box.checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            top: -2px;
+            left: 3px;
+        }
+
+        .check-item.completed {
+            opacity: 0.7;
+        }
+
+        .check-item.completed .check-text {
+            text-decoration: line-through;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e7ff;
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-weight: 600;
+            color: #667eea;
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+
+        .save-progress {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 10px 0;
+            transition: all 0.2s ease;
+        }
+
+        .save-progress:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
         }
 
         .metrics {
@@ -383,15 +455,29 @@
             <div class="process-card">
                 <div class="process-number">1</div>
                 <div class="process-title">Nomenclatura Semântica</div>
+                <div class="example-box">
+                    <div class="example-title">Responsável:</div>
+                    Todos os designers | Prazo: Imediato
+                </div>
                 <div class="do-list">
+                    <div class="do-item">✅ AccountDropdown</div>
                     <div class="do-item">✅ ProductCard</div>
                     <div class="do-item">✅ SearchInput</div>
                     <div class="do-item">✅ AddToCartButton</div>
+                    <div class="do-item">✅ FilterSidebar</div>
                 </div>
                 <div class="do-list">
                     <div class="dont-item">❌ Rectangle 1</div>
                     <div class="dont-item">❌ Frame 123</div>
                     <div class="dont-item">❌ Group 5</div>
+                    <div class="dont-item">❌ Button Copy 2</div>
+                    <div class="dont-item">❌ Component Instance</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-title">Padrão PascalCase:</div>
+                    <div>🏗️ Componentes: ComponentName</div>
+                    <div>📦 Containers: ContainerName</div>
+                    <div>🔧 Elementos: ElementName</div>
                 </div>
             </div>
 
@@ -399,46 +485,102 @@
                 <div class="process-number">2</div>
                 <div class="process-title">Componentes Organizados</div>
                 <div class="example-box">
-                    <div class="example-title">Estrutura:</div>
-                    <div>🔴 Atoms (Button, Input, Icon)</div>
-                    <div>🟡 Molecules (SearchBar, ProductInfo)</div>
-                    <div>🟢 Organisms (ProductCard, Header)</div>
+                    <div class="example-title">Responsável:</div>
+                    Designer principal + revisão por lead
                 </div>
-                <div class="do-item">Transforme tudo que repete em componente</div>
+                <div class="example-box">
+                    <div class="example-title">Estrutura Atomic Design:</div>
+                    <div>🔴 <strong>Atoms:</strong> Button, Input, Icon</div>
+                    <div>🟡 <strong>Molecules:</strong> SearchBar, ProductPrice, ProductInfo</div>
+                    <div>🟢 <strong>Organisms:</strong> ProductCard, Header, FilterSidebar</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-title">Componentes Obrigatórios:</div>
+                    <div>🔘 Todos os botões (primary, secondary, danger)</div>
+                    <div>🛍️ Cards de produto</div>
+                    <div>📝 Inputs e formulários</div>
+                    <div>🧭 Headers e menus de navegação</div>
+                    <div>🔔 Modais e popups</div>
+                    <div>🛒 Elementos de carrinho</div>
+                    <div>👤 Componentes de usuário/login</div>
+                </div>
             </div>
 
             <div class="process-card">
                 <div class="process-number">3</div>
-                <div class="process-title">Auto Layout</div>
-                <div class="do-item">✅ Todos os containers</div>
-                <div class="do-item">✅ Listas e grids</div>
-                <div class="do-item">✅ Formulários</div>
+                <div class="process-title">Auto Layout Obrigatório</div>
                 <div class="example-box">
-                    <div class="example-title">Teste:</div>
-                    Redimensione o frame - deve comportar como esperado no código
+                    <div class="example-title">Responsável:</div>
+                    Todos os designers | Prazo: 100% dos containers
+                </div>
+                <div class="example-box">
+                    <div class="example-title">Aplicar Auto Layout em:</div>
+                    <div>📦 Todos os containers de produtos</div>
+                    <div>📋 Listas e grids</div>
+                    <div>📝 Formulários completos</div>
+                    <div>🧭 Barras de navegação</div>
+                    <div>🎴 Layouts de cards</div>
+                    <div>📁 Estruturas de menu</div>
+                </div>
+                <div class="do-item">
+                    <strong>⚠️ TESTE OBRIGATÓRIO:</strong><br>
+                    Redimensione o frame no Figma - deve comportar como esperado no código final
                 </div>
             </div>
 
             <div class="process-card">
                 <div class="process-number">4</div>
-                <div class="process-title">Design Tokens</div>
+                <div class="process-title">Design Tokens/Variables</div>
                 <div class="example-box">
-                    <div class="example-title">Variables obrigatórias:</div>
-                    <div>🎨 Colors/Primary → --color-primary</div>
-                    <div>📏 Spacing/MD → --space-4</div>
-                    <div>📝 Text/Body → --font-size-base</div>
+                    <div class="example-title">Responsável:</div>
+                    Design lead + aprovação do time<br>
+                    <strong>Prazo:</strong> Configurar semana 1, aplicar em todos designs
+                </div>
+                <div class="example-box">
+                    <div class="example-title">🎨 Cores Obrigatórias:</div>
+                    <div>Colors/Primary/500 → <code>--color-primary</code></div>
+                    <div>Colors/Secondary/500 → <code>--color-secondary</code></div>
+                    <div>Colors/Success/500 → <code>--color-success</code></div>
+                    <div>Colors/Error/500 → <code>--color-error</code></div>
+                    <div>Colors/Price/500 → <code>--color-price</code></div>
+                </div>
+                <div class="example-box">
+                    <div class="example-title">📏 Espaçamentos (grid 8px):</div>
+                    <div>Spacing/XS → 4px → <code>--space-1</code></div>
+                    <div>Spacing/SM → 8px → <code>--space-2</code></div>
+                    <div>Spacing/MD → 16px → <code>--space-4</code></div>
+                    <div>Spacing/LG → 24px → <code>--space-6</code></div>
+                    <div>Spacing/XL → 32px → <code>--space-8</code></div>
+                </div>
+                <div class="example-box">
+                    <div class="example-title">📝 Typography:</div>
+                    <div>Text/Heading/Large → <code>--font-size-xl</code></div>
+                    <div>Text/Body/Regular → <code>--font-size-base</code></div>
+                    <div>Text/Caption/Small → <code>--font-size-sm</code></div>
                 </div>
             </div>
 
             <div class="process-card">
                 <div class="process-number">5</div>
-                <div class="process-title">Annotations</div>
-                <div class="do-item">Estados hover/focus</div>
-                <div class="do-item">Comportamento responsivo</div>
-                <div class="do-item">Estados loading/error</div>
+                <div class="process-title">Annotations Comportamentais</div>
                 <div class="example-box">
-                    <div class="example-title">Exemplo:</div>
-                    "Em mobile, sidebar vira drawer bottom-sheet"
+                    <div class="example-title">Responsável:</div>
+                    Designer do componente | Prazo: Durante criação do design
+                </div>
+                <div class="example-box">
+                    <div class="example-title">🔍 Documentar obrigatoriamente:</div>
+                    <div>🎯 Estados hover/focus/active</div>
+                    <div>📱 Comportamento responsivo específico</div>
+                    <div>🔄 Interações complexas</div>
+                    <div>⏳ Estados loading/error/empty</div>
+                    <div>✨ Transições e animações</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-title">📝 Exemplos de Annotations:</div>
+                    <div>"Botão fica desabilitado quando produto out-of-stock"</div>
+                    <div>"Card tem hover effect com shadow elevation"</div>
+                    <div>"Em mobile, sidebar vira drawer bottom-sheet"</div>
+                    <div>"Loading state mostra skeleton por 2s"</div>
                 </div>
             </div>
         </div>
@@ -488,54 +630,64 @@
             <div class="checklist-grid">
                 <div class="checklist-section">
                     <h3>Individual (Designer)</h3>
-                    <div class="check-item">
-                        <div class="check-box"></div>
-                        <div>Layers com nomes semânticos</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="individual-progress"></div>
                     </div>
-                    <div class="check-item">
-                        <div class="check-box"></div>
-                        <div>Componentes reutilizáveis criados</div>
+                    <div class="progress-text" id="individual-text">0% concluído</div>
+                    <div class="check-item" data-list="individual">
+                        <div class="check-box" onclick="toggleCheck(this)"></div>
+                        <div class="check-text">Layers com nomes semânticos</div>
                     </div>
-                    <div class="check-item">
-                        <div class="check-box"></div>
-                        <div>Auto Layout aplicado</div>
+                    <div class="check-item" data-list="individual">
+                        <div class="check-box" onclick="toggleCheck(this)"></div>
+                        <div class="check-text">Componentes reutilizáveis criados</div>
                     </div>
-                    <div class="check-item">
-                        <div class="check-box"></div>
-                        <div>Design tokens aplicados</div>
+                    <div class="check-item" data-list="individual">
+                        <div class="check-box" onclick="toggleCheck(this)"></div>
+                        <div class="check-text">Auto Layout aplicado</div>
                     </div>
-                    <div class="check-item">
-                        <div class="check-box"></div>
-                        <div>Annotations adicionadas</div>
+                    <div class="check-item" data-list="individual">
+                        <div class="check-box" onclick="toggleCheck(this)"></div>
+                        <div class="check-text">Design tokens aplicados</div>
                     </div>
-                    <div class="check-item">
-                        <div class="check-box"></div>
-                        <div>Redimensionamento testado</div>
+                    <div class="check-item" data-list="individual">
+                        <div class="check-box" onclick="toggleCheck(this)"></div>
+                        <div class="check-text">Annotations adicionadas</div>
                     </div>
+                    <div class="check-item" data-list="individual">
+                        <div class="check-box" onclick="toggleCheck(this)"></div>
+                        <div class="check-text">Redimensionamento testado</div>
+                    </div>
+                    <button class="save-progress" onclick="saveProgress('individual')">💾 Salvar Progresso</button>
                 </div>
 
                 <div class="checklist-section">
                     <h3>Revisão (Design Lead)</h3>
-                    <div class="check-item">
-                        <div class="check-box"></div>
-                        <div>Nomenclatura segue padrão</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="lead-progress"></div>
                     </div>
-                    <div class="check-item">
-                        <div class="check-box"></div>
-                        <div>Componentes organizados na library</div>
+                    <div class="progress-text" id="lead-text">0% concluído</div>
+                    <div class="check-item" data-list="lead">
+                        <div class="check-box" onclick="toggleCheck(this)"></div>
+                        <div class="check-text">Nomenclatura segue padrão</div>
                     </div>
-                    <div class="check-item">
-                        <div class="check-box"></div>
-                        <div>Tokens aplicados consistentemente</div>
+                    <div class="check-item" data-list="lead">
+                        <div class="check-box" onclick="toggleCheck(this)"></div>
+                        <div class="check-text">Componentes organizados na library</div>
                     </div>
-                    <div class="check-item">
-                        <div class="check-box"></div>
-                        <div>Auto Layout configurado corretamente</div>
+                    <div class="check-item" data-list="lead">
+                        <div class="check-box" onclick="toggleCheck(this)"></div>
+                        <div class="check-text">Tokens aplicados consistentemente</div>
                     </div>
-                    <div class="check-item">
-                        <div class="check-box"></div>
-                        <div>Design responsivo testado</div>
+                    <div class="check-item" data-list="lead">
+                        <div class="check-box" onclick="toggleCheck(this)"></div>
+                        <div class="check-text">Auto Layout configurado corretamente</div>
                     </div>
+                    <div class="check-item" data-list="lead">
+                        <div class="check-box" onclick="toggleCheck(this)"></div>
+                        <div class="check-text">Design responsivo testado</div>
+                    </div>
+                    <button class="save-progress" onclick="saveProgress('lead')">💾 Salvar Progresso</button>
                 </div>
             </div>
         </div>
@@ -562,5 +714,171 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Carrega progresso salvo ao inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
+        });
+
+        function toggleCheck(checkBox) {
+            const isChecked = checkBox.classList.contains('checked');
+            const checkItem = checkBox.parentElement;
+            
+            if (isChecked) {
+                checkBox.classList.remove('checked');
+                checkItem.classList.remove('completed');
+            } else {
+                checkBox.classList.add('checked');
+                checkItem.classList.add('completed');
+            }
+            
+            updateProgress();
+            autoSaveProgress();
+        }
+
+        function updateProgress() {
+            updateListProgress('individual');
+            updateListProgress('lead');
+        }
+
+        function updateListProgress(listType) {
+            const items = document.querySelectorAll(`[data-list="${listType}"]`);
+            const checkedItems = document.querySelectorAll(`[data-list="${listType}"] .check-box.checked`);
+            
+            const total = items.length;
+            const completed = checkedItems.length;
+            const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+            
+            const progressFill = document.getElementById(`${listType}-progress`);
+            const progressText = document.getElementById(`${listType}-text`);
+            
+            progressFill.style.width = percentage + '%';
+            progressText.textContent = `${percentage}% concluído (${completed}/${total})`;
+        }
+
+        function saveProgress(listType) {
+            const items = document.querySelectorAll(`[data-list="${listType}"]`);
+            const progress = [];
+            
+            items.forEach((item, index) => {
+                const isChecked = item.querySelector('.check-box').classList.contains('checked');
+                progress.push({
+                    index: index,
+                    checked: isChecked,
+                    text: item.querySelector('.check-text').textContent,
+                    timestamp: new Date().toISOString()
+                });
+            });
+            
+            localStorage.setItem(`figma-mcp-${listType}-progress`, JSON.stringify({
+                data: progress,
+                lastSaved: new Date().toISOString(),
+                version: '1.0'
+            }));
+            
+            // Feedback visual
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = '✅ Salvo!';
+            button.style.background = '#4CAF50';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '';
+            }, 2000);
+            
+            console.log(`Progresso ${listType} salvo:`, progress);
+        }
+
+        function autoSaveProgress() {
+            // Auto-save a cada 30 segundos após mudança
+            clearTimeout(window.autoSaveTimer);
+            window.autoSaveTimer = setTimeout(() => {
+                saveProgress('individual');
+                saveProgress('lead');
+            }, 2000);
+        }
+
+        function loadProgress() {
+            loadListProgress('individual');
+            loadListProgress('lead');
+            updateProgress();
+        }
+
+        function loadListProgress(listType) {
+            const saved = localStorage.getItem(`figma-mcp-${listType}-progress`);
+            
+            if (saved) {
+                try {
+                    const progressData = JSON.parse(saved);
+                    const items = document.querySelectorAll(`[data-list="${listType}"]`);
+                    
+                    progressData.data.forEach((savedItem) => {
+                        if (savedItem.index < items.length) {
+                            const item = items[savedItem.index];
+                            const checkBox = item.querySelector('.check-box');
+                            
+                            if (savedItem.checked) {
+                                checkBox.classList.add('checked');
+                                item.classList.add('completed');
+                            }
+                        }
+                    });
+                    
+                    console.log(`Progresso ${listType} carregado:`, progressData);
+                } catch (error) {
+                    console.error('Erro ao carregar progresso:', error);
+                }
+            }
+        }
+
+        function resetProgress(listType) {
+            if (confirm(`Tem certeza que deseja resetar todo o progresso de ${listType}?`)) {
+                localStorage.removeItem(`figma-mcp-${listType}-progress`);
+                
+                const items = document.querySelectorAll(`[data-list="${listType}"]`);
+                items.forEach(item => {
+                    const checkBox = item.querySelector('.check-box');
+                    checkBox.classList.remove('checked');
+                    item.classList.remove('completed');
+                });
+                
+                updateProgress();
+            }
+        }
+
+        function exportProgress() {
+            const individualProgress = localStorage.getItem('figma-mcp-individual-progress');
+            const leadProgress = localStorage.getItem('figma-mcp-lead-progress');
+            
+            const exportData = {
+                individual: individualProgress ? JSON.parse(individualProgress) : null,
+                lead: leadProgress ? JSON.parse(leadProgress) : null,
+                exportDate: new Date().toISOString(),
+                version: '1.0'
+            };
+            
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], {
+                type: 'application/json'
+            });
+            
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `figma-mcp-progress-${new Date().toISOString().slice(0, 10)}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                saveProgress('individual');
+                saveProgress('lead');
+            }
+        });
+    </script>
 </body>
 </html>
